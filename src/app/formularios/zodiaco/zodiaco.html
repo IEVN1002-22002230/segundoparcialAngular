@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica Zodiaco</title>
+
+</head>
+<body>
+
+  <div class="card">
+    <!-- SECCIÓN DEL FORMULARIO -->
+    <div id="seccionFormulario">
+      <h3>Datos Personales</h3>
+      
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" id="nombre" placeholder="Nombre">
+      </div>
+
+      <div class="form-group">
+        <label>Apaterno</label>
+        <input type="text" id="apaterno" placeholder="Apellido Paterno">
+      </div>
+
+      <div class="form-group">
+        <label>Amaterno</label>
+        <input type="text" id="amaterno" placeholder="Apellido Materno">
+      </div>
+
+      <h3>Fecha de nacimiento</h3>
+      <div class="date-group form-group">
+        <div>
+          <label>Día</label>
+          <input type="number" id="dia" placeholder="22">
+        </div>
+        <div>
+          <label>Mes</label>
+          <input type="number" id="mes" placeholder="07">
+        </div>
+        <div>
+          <label>Año</label>
+          <input type="number" id="anio" placeholder="2004">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Sexo</label>
+        <div class="radio-group">
+          <input type="radio" name="sexo" id="masculino" value="Masculino">
+          <label for="masculino">Masculino</label>
+          <input type="radio" name="sexo" id="femenino" value="Femenino">
+          <label for="femenino">Femenino</label>
+        </div>
+      </div>
+
+      <button onclick="imprimirDatos()">imprimir</button>
+    </div>
+
+    <!-- SECCIÓN DE RESULTADO -->
+    <div id="seccionResultado" class="resultado hidden">
+      <h2>Hola <span id="resNombre" style="font-style: italic;"></span></h2>
+      <p>Tienes <strong id="resEdad"></strong> años</p>
+      <p>tu signo zodiacal</p>
+      <p>Es <strong id="resSigno" style="color: #0066cc;"></strong></p>
+      
+      <div>
+        <img id="resImagen" src="" alt="Signo zodiacal">
+      </div>
+
+      <button onclick="regresarFormulario()" style="background-color: #666; margin-top: 20px;">Regresar</button>
+    </div>
+  </div>
+
+  <!-- LÓGICA JAVASCRIPT -->
+  <script>
+    function imprimirDatos() {
+      const nombre = document.getElementById('nombre').value;
+      const apaterno = document.getElementById('apaterno').value;
+      const amaterno = document.getElementById('amaterno').value;
+      const anio = parseInt(document.getElementById('anio').value) || 2026;
+
+      // Calcular la edad basada en el año actual (2026)
+      const anioActual = 2026;
+      const edad = anioActual - anio;
+
+      // Calcular signo zodiacal (ejemplo basado en horóscopo chino por año)
+      const signos = ['Rata', 'Buey', 'Tigre', 'Conejo', 'Dragón', 'Serpiente', 'Caballo', 'Cabra', 'Mono', 'Gallo', 'Perro', 'Cerdo'];
+      const indice = (anio - 1900) % 12;
+      const signo = signos[indice >= 0 ? indice : 0];
+
+      // Mostrar los valores en la vista de resultado
+      document.getElementById('resNombre').innerText = `${nombre} ${apaterno} ${amaterno}`;
+      document.getElementById('resEdad').innerText = edad;
+      document.getElementById('resSigno').innerText = signo;
+      
+      // Imagen de muestra (puedes cambiarla por tu archivo local)
+      document.getElementById('resImagen').src = 'https://cdn-icons-png.flaticon.com/512/616/616408.png';
+
+      // Cambiar de pantalla ocultando el formulario y mostrando el resultado
+      document.getElementById('seccionFormulario').classList.add('hidden');
+      document.getElementById('seccionResultado').classList.remove('hidden');
+    }
+
+    function regresarFormulario() {
+      document.getElementById('seccionResultado').classList.add('hidden');
+      document.getElementById('seccionFormulario').classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
