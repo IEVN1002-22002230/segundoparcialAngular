@@ -2,7 +2,7 @@
 <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
  
   <h1 class="text-3xl font-bold text-gray-900 mb-6">
-    Contact form
+    Registro Alumnos
   </h1>
  
   <form [formGroup]="formulario">
@@ -91,6 +91,7 @@
     <div class="flex justify-end mt-5">
       <button
         type="submit"
+        (click)="muestraAlumnos()"
         class="text-white bg-blue-700 hover:bg-blue-800
                  focus:ring-4 focus:outline-none focus:ring-blue-300
                  font-medium rounded-lg text-sm px-5 py-2.5
@@ -101,5 +102,11 @@
     </div>
  
   </form>
+
+  <h1>LISTA ALUMNO</h1>
+  <h2>Matricula: {{nuevoAlumno.matricula}}</h2>
+  <h2>Nombre: {{nuevoAlumno.nombre}}</h2>
+  <h2>Correo: {{nuevoAlumno.correo}}</h2>
+  <h2>Materia: {{nuevoAlumno.materia}}</h2>
  
 </div>
