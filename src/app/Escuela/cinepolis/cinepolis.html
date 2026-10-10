@@ -1,0 +1,72 @@
+<form [formGroup]="cinepolisForm" class="max-w-sm mx-auto space-y-4 mt-10">
+    <br><br><br><br>
+    
+    <div class="text-center font-bold text-2xl mb-4 text-heading">Cinepolis</div>
+    <div class="text-center font-bold text-2xl mb-4 text-heading">Las boletas cuestan $12 pero se pueden obtener descuentos al cumplir las siguientes condiciones</div>
+    <h2>+5 boletas se da 15% descuento</h2>
+    <h2>3,4 y 5 boletas se da 10% descuento</h2>
+    <h2>2 boletas no hay descuento</h2>
+    <h2>Utiliza CINECO y obten 10% de descuentp extra a tus beneficios ya obtenidos</h2>
+    
+    @if (mensajeError) {
+        <div class="text-red-500 text-center text-sm font-medium">
+            {{ mensajeError }}
+        </div>
+    }
+
+    <!-- Nombre -->
+    <div>
+        <label class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
+        <input type="text" formControlName="nombre" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Nombre completo">
+    </div>
+
+    <!-- Compradores -->
+    <div>
+        <label class="block mb-2.5 text-sm font-medium text-heading">Cantidad Compradores</label>
+        <input type="number" formControlName="cantidad_compradores" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Ej. 1">
+    </div>
+
+    <!-- Tarjeta Cineco -->
+    <div>
+        <label class="block mb-2.5 text-sm font-medium text-heading">Tarjeta Cineco</label>
+        <div class="flex gap-4">
+            <label class="flex items-center text-sm text-heading">
+                <input type="radio" formControlName="tarjeta_cineco" value="si" class="mr-2"> Si
+            </label>
+            <label class="flex items-center text-sm text-heading">
+                <input type="radio" formControlName="tarjeta_cineco" value="no" class="mr-2"> No
+            </label>
+        </div>
+    </div>
+
+    <!-- Cantidad de Boletas -->
+    <div>
+        <label class="block mb-2.5 text-sm font-medium text-heading">Cantidad De Boletas</label>
+        <input type="number" formControlName="cantidad_boletas" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Ej. 2">
+    </div>
+
+    <!-- Valor a Pagar  -->
+    <div class="pt-4 border-t border-gray-200">
+        <label class="block mb-2.5 text-sm font-medium text-heading">Valor a Pagar</label>
+
+        <div class="bg-gray-100 border border-default-medium text-heading text-sm rounded-base block w-full px-3 py-2.5 shadow-xs cursor-not-allowed h-[42px] flex items-center">
+            {{ compraActual.pagar }}
+        </div>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="flex gap-4 pt-4">
+    
+        <button type="button" (click)="procesar()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-base text-sm px-5 py-2.5 text-center shadow-xs">Procesar</button>
+        <button type="button"  class="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-base text-sm px-5 py-2.5 text-center shadow-xs">Salir</button>
+    </div>
+
+    <div>
+    <p>Nombre: {{ compraActual.nombre }}</p>
+    <p>Cantidad de compradores: {{ compraActual.compradores }}</p>
+    <p>Tarjeta Cineco: {{ compraActual.tarjeta }}</p>
+    <p>Cantidad de boletas: {{ compraActual.boletos }}</p>
+    <p>Total a pagar: ${{ compraActual.pagar }}</p>
+</div>
+
+</form>
